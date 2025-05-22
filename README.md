@@ -1,1 +1,1 @@
-# Student-database
+# School-database
