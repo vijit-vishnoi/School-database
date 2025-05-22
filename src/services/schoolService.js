@@ -1,4 +1,4 @@
-const db = require('../config/db'); // Your DB connection
+const db = require('../config/db'); 
 const schoolRepository = require('../repository/schoolRepository');
 
 
@@ -6,7 +6,7 @@ class SchoolService {
   async createSchool(data) {
     const { name, address, latitude, longitude } = data;
 
-    // Validate required fields
+    
     if (!name || !address) {
       throw {
         statusCode: 400,
@@ -51,10 +51,10 @@ class SchoolService {
   async updateSchool(id, data) {
     const { name, address, latitude, longitude } = data;
 
-    // Optional: check if school exists before updating
+    
     const existing = await this.getSchoolById(id);
 
-    // Validate required fields if you want to enforce on update as well
+    
     if (!name || !address) {
       throw {
         statusCode: 400,
@@ -71,12 +71,12 @@ class SchoolService {
       [name, address, lat, long, id]
     );
 
-    // Return updated record (or minimal info)
+    
     return { id, name, address, latitude: lat, longitude: long };
   }
 
   async deleteSchool(id) {
-    // Optional: check if school exists before deleting
+    
     await this.getSchoolById(id);
 
     await db.query("DELETE FROM school WHERE id = ?", [id]);
