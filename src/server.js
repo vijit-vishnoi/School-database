@@ -9,7 +9,7 @@ app.use(express.json());
 const schoolRoutes = require('./routes/schoolRoutes');
 app.use('/api/schools', schoolRoutes);
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 10000;
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`Server running on port ${PORT}`);
 });
@@ -24,15 +24,15 @@ app.get('/health', (req, res) => {
 });
 
 
-const pool = require('./config/db'); 
-pool.getConnection()
-  .then(connection => {
-    console.log('Database connected successfully');
-    connection.release();
-  })
-  .catch(err => {
-    console.error('Database connection failed:', err.message);
-  });
+connection.connect(err => {
+  if (err) {
+    console.error('❌ Database connection failed:', err.message);
+    process.exit(1);
+  } else {
+    console.log('✅ Connected to MySQL');
+  }
+});
+
 
   app.get('/test-db', async (req, res) => {
   try {
