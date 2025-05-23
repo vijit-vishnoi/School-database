@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 📚 School Database API
 
 This project is a **Node.js REST API** for managing a list of schools with full **CRUD operations** (Create, Read, Update, Delete). It also supports **sorting schools by proximity** to a user-supplied latitude and longitude.
@@ -26,3 +27,4 @@ This project is a **Node.js REST API** for managing a list of schools with full 
 
 ## 📦 Project Structure
 
+=======
