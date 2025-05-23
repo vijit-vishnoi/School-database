@@ -23,10 +23,8 @@ app.get('/health', (req, res) => {
   res.json({ status: 'healthy', timestamp: new Date().toISOString() });
 });
 
-// Add this to your server.js after requiring db
-const pool = require('./config/db'); // adjust path as needed
 
-// Test database connection
+const pool = require('./config/db'); 
 pool.getConnection()
   .then(connection => {
     console.log('Database connected successfully');
@@ -35,3 +33,12 @@ pool.getConnection()
   .catch(err => {
     console.error('Database connection failed:', err.message);
   });
+
+  app.get('/test-db', async (req, res) => {
+  try {
+    const [rows] = await pool.query('SELECT 1 + 1 AS result');
+    res.json({ success: true, result: rows[0].result });
+  } catch (error) {
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
