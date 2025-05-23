@@ -22,3 +22,16 @@ app.get('/', (req, res) => {
 app.get('/health', (req, res) => {
   res.json({ status: 'healthy', timestamp: new Date().toISOString() });
 });
+
+// Add this to your server.js after requiring db
+const pool = require('./config/db'); // adjust path as needed
+
+// Test database connection
+pool.getConnection()
+  .then(connection => {
+    console.log('Database connected successfully');
+    connection.release();
+  })
+  .catch(err => {
+    console.error('Database connection failed:', err.message);
+  });
