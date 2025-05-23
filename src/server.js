@@ -14,3 +14,11 @@ app.listen(PORT, '0.0.0.0', () => {
   console.log(`Server running on port ${PORT}`);
 });
 
+
+app.get('/', (req, res) => {
+  res.json({ message: 'School Database API is running!', status: 'OK' });
+});
+
+app.get('/health', (req, res) => {
+  res.json({ status: 'healthy', timestamp: new Date().toISOString() });
+});
